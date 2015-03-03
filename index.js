@@ -14,6 +14,7 @@ function TorrentStream(options) {
 
   this.announce = options.announce;
   this.trackers = options.trackers;
+  this.webseeds = options.webseeds;
   this.createdBy = options.createdBy;
 
   if (!this.announce && this.trackers && this.trackers.length) {
@@ -74,6 +75,7 @@ TorrentStream.prototype._flush = function(done) {
   var metadata = {
     announce: self.announce,
     'announce-list': [ self.trackers ], // note: array of arrays
+    'url-list': self.webseeds,
     'creation date': parseInt(Date.now() / 1000),
     info: self.info
   };
